@@ -27,3 +27,28 @@ const PORT = 8080;
 const server = app.listen(PORT, () => {
   console.log("Server is runnig on port: " + PORT);
 });
+
+// Setup routes
+// Get routes
+app.get("/data", (req, res) => {
+  res.send(projectData);
+});
+
+// Post routes
+app.post("/saveData", (req, res) => {
+  const data = req.body;
+  let newData = {
+    temperature: data.temperature,
+    date: data.date,
+    userResponse: data.userResponse,
+  };
+
+  try {
+    projectData = { ...newData };
+    console.log("Data saved");
+    res.send(projectData);
+  } catch (err) {
+    console.error(err);
+    res.status(400);
+  }
+});
