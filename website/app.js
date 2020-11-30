@@ -55,9 +55,9 @@ const updateUI = async () => {
   try {
     const data = await request.json();
 
-    dateEl.textContent = data.date;
-    tempEl.textContent = data.temperature;
-    contentEl.textContent = data.userResponse;
+    dateEl.textContent = "Date: " + data.date;
+    tempEl.textContent = "Temprature: " + data.temperature;
+    contentEl.textContent = "Your feeling: " + data.userResponse;
     zip.value = "";
     feelings.value = "";
   } catch (err) {
@@ -83,6 +83,9 @@ const submitData = (e) => {
     console.error(err);
   }
 };
+
+// If the page refresh. This won't lose old data
+updateUI();
 
 // Get data and submit
 generateBtn.addEventListener("click", submitData);
