@@ -55,9 +55,16 @@ const updateUI = async () => {
   try {
     const data = await request.json();
 
-    dateEl.textContent = "Date: " + data.date;
-    tempEl.textContent = "Temprature: " + data.temperature;
-    contentEl.textContent = "Your feeling: " + data.userResponse;
+    data.date !== undefined
+      ? (dateEl.textContent = "Date: " + data.date)
+      : (dateEl.textContent = "Date: -");
+    data.temperature !== undefined
+      ? (tempEl.textContent = "Temprature: " + data.temperature)
+      : (tempEl.textContent = "Temprature: -");
+    data.userResponse !== undefined
+      ? (contentEl.textContent = "Your feeling: " + data.userResponse)
+      : (contentEl.textContent = "Your feeling: -");
+
     zip.value = "";
     feelings.value = "";
   } catch (err) {
